@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
@@ -96,6 +96,30 @@ DATABASES = {
     }
 }
 
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
+
+# 邮件配置
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "guanguanjujiu2018@163.com"
+EMAIL_HOST_PASSWORD = "guanyankai666"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# 手机号正则匹配
+REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+
+# 云片网设置
+APIKEY = "d6c4ddbf50ab36611d2f52041a0b949e"
+
+# 邮箱号正则匹配
+REGEX_EMAIL = "^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"
+
+EMAIL_TITLE = "您正在注册Mshop会员"
+EMAIL_FROM = "guanguanjujiu2018@163.com"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

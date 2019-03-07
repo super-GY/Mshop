@@ -37,4 +37,17 @@ class VerifyCode(models.Model):
         return self.code
 
 
+class EmailCode(models.Model):
+    """
+    邮箱验证码
+    """
+    code = models.CharField(max_length=10, verbose_name="验证码")
+    email = models.EmailField(verbose_name=u'邮箱')
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
+    class Meta:
+        verbose_name = "邮箱验证码"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.code
