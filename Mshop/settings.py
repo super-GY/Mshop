@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.users.apps.UsersConfig',
-    'apps.goods.apps.GoodsConfig',
-    'apps.operations.apps.OperationsConfig',
-    'apps.trade.apps.TradeConfig',
+    'users.apps.UsersConfig',
+    'goods.apps.GoodsConfig',
+    'operations.apps.OperationsConfig',
+    'trade.apps.TradeConfig',
 
 ]
 
