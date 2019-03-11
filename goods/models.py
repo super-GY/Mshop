@@ -94,7 +94,7 @@ class IndexAd(models.Model):
 
 class GoodsImage(models.Model):
     """
-    商品轮播图
+    商品图片
     """
     goods = models.ForeignKey(Goods, verbose_name="商品", related_name="images", on_delete=models.CASCADE)
     image = models.ImageField(upload_to="", verbose_name="图片", null=True, blank=True)
