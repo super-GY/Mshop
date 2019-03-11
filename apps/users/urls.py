@@ -23,6 +23,7 @@ from users import views
 
 route = routers.DefaultRouter()
 route.register(r'user', views.UserViewset, base_name='users')
+route.register(r'email', views.EmailViewSet, base_name='email')
 
 urlpatterns = [
     path('user/', views.UserViewset, name='user'),
