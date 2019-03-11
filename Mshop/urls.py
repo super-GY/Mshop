@@ -17,13 +17,29 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
 
-from users.urls import route
+from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
+from users.views import UserViewset, EmailViewSet
 
+route = routers.DefaultRouter()
+
+# 用户 url
+route.register(r'user', UserViewset, base_name='users')
+# 发送邮件 url
+route.register(r'email', EmailViewSet, base_name='email')
+# 商品 url
+route.register(r'goods', GoodsListViewSet, base_name="goods")
+# 商品类型 url
+route.register(r'categorys', CategoryViewset, base_name="categorys")
+# 热词 url
+route.register(r'hotsearchs', HotSearchsViewset, base_name="hotsearchs")
+# 轮播图 url
+route.register(r'banners', BannerViewset, base_name="banners")
+# 首页商品系列数据 url
+route.register(r'indexgoods', IndexCategoryViewset, base_name="indexgoods")
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls')),
-    path(r'users/', include(route.urls))
-
+    path(r'', include(route.urls)),
 
 ]
