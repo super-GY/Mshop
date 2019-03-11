@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'operations.apps.OperationsConfig',
     'trade.apps.TradeConfig',
+    'django_filters',
 
 ]
 
