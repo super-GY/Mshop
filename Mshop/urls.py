@@ -20,6 +20,7 @@ from django.urls import path
 from rest_framework import routers
 
 from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
+from operations.views import UserFavViewset, LeavingMessageViewset, AddressViewset
 from trade.views import ShoppingCartViewset, OrderViewset, AlipayView
 from users.views import UserViewset, EmailViewSet
 
@@ -39,11 +40,16 @@ route.register(r'hotsearchs', HotSearchsViewset, base_name="hotsearchs")
 route.register(r'banners', BannerViewset, base_name="banners")
 # 首页商品系列数据 url
 route.register(r'indexgoods', IndexCategoryViewset, base_name="indexgoods")
-#购物车url
+# 购物车url
 route.register(r'shopcarts', ShoppingCartViewset, base_name="shopcarts")
-#订单相关url
+# 订单相关url
 route.register(r'orders', OrderViewset, base_name="orders")
-
+# 收藏
+route.register(r'userfavs', UserFavViewset, base_name="userfavs")
+# 留言
+route.register(r'messages', LeavingMessageViewset, base_name="messages")
+# 收货地址
+route.register(r'address', AddressViewset, base_name="address")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
