@@ -122,6 +122,10 @@ REGEX_EMAIL = "^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"
 EMAIL_TITLE = "您正在注册Mshop会员"
 EMAIL_FROM = "guanguanjujiu2018@163.com"
 
+# 支付宝相关配置
+private_key_path = os.path.join(BASE_DIR, 'trade/keys/private_2048.txt')
+ali_pub_key_path = os.path.join(BASE_DIR, 'trade/keys/alipay_key_2048.txt')
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 

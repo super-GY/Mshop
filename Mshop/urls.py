@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf.urls import include
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
 from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
+from trade.views import ShoppingCartViewset, OrderViewset, AlipayView
 from users.views import UserViewset, EmailViewSet
 
 route = routers.DefaultRouter()
@@ -38,8 +39,15 @@ route.register(r'hotsearchs', HotSearchsViewset, base_name="hotsearchs")
 route.register(r'banners', BannerViewset, base_name="banners")
 # 首页商品系列数据 url
 route.register(r'indexgoods', IndexCategoryViewset, base_name="indexgoods")
+#购物车url
+route.register(r'shopcarts', ShoppingCartViewset, base_name="shopcarts")
+#订单相关url
+route.register(r'orders', OrderViewset, base_name="orders")
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(route.urls)),
+    url(r'^alipay/return/', AlipayView.as_view(), name="alipay"),
 
 ]
