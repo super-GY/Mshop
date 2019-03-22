@@ -26,9 +26,11 @@ class CustomBackend(ModelBackend):
     """
     自定义用户验证
     """
-    def authenticate(self, username=None, password=None, **kwargs):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        if username is None:
+            username = kwargs.get(User.USERNAME_FIELD)
         try:
-            user = User.objects.get(Q(username=username)|Q(mobile=username))
+            user = User.objects.get(Q(username=username)|Q(email=username))
             if user.check_password(password):
                 return user
         except Exception as e:

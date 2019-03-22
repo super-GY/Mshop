@@ -48,12 +48,14 @@ INSTALLED_APPS = [
     'operations.apps.OperationsConfig',
     'trade.apps.TradeConfig',
     'django_filters',
-
+    'corsheaders',  # 跨域
+    'rest_framework.authtoken',  # 认证
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # 跨域中间件
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,7 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Mshop.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -144,6 +145,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CORS
+CORS_ORIGIN_WHITELIST = (
+    '127.0.0.1:8001',
+    'localhost:8001',
+)
+CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',  # 全局配置token
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -158,6 +175,9 @@ USE_L10N = True
 
 USE_TZ = False
 
+# AUTHENTICATION_BACKENDS = (
+#     'users.views.CustomBackend',
+# )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

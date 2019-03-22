@@ -18,6 +18,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
+from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
 from operations.views import UserFavViewset, LeavingMessageViewset, AddressViewset
@@ -54,6 +56,13 @@ route.register(r'address', AddressViewset, base_name="address")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(route.urls)),
+
+    # drf自带的token认证模式
+    url(r'^api-token-auth/', views.obtain_auth_token),
+
+    # jwt的认证接口
+    url(r'^jwt-auth/', obtain_jwt_token),
+
     url(r'^alipay/return/', AlipayView.as_view(), name="alipay"),
 
 ]
