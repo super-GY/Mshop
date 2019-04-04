@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+import xadmin
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
@@ -54,7 +54,7 @@ route.register(r'messages', LeavingMessageViewset, base_name="messages")
 route.register(r'address', AddressViewset, base_name="address")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', xadmin.site.urls),
     path(r'', include(route.urls)),
 
     # drf自带的token认证模式

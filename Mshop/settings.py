@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'operations.apps.OperationsConfig',
     'trade.apps.TradeConfig',
-    'extra_apps.DjangoUeditor',
+    'DjangoUeditor',
     'crispy_forms',
     'xadmin',
     'django_filters',

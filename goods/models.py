@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db import models
-from extra_apps.DjangoUeditor.models import UEditorField
+from DjangoUeditor.models import UEditorField
 
 
 class GoodsCategory(models.Model):
@@ -42,7 +42,7 @@ class GoodsCategoryBrand(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
-        verbose_name = "品牌"
+        verbose_name = "商品品牌"
         verbose_name_plural = verbose_name
         db_table = "goods_goodsbrand"
 
@@ -64,8 +64,9 @@ class Goods(models.Model):
     market_price = models.FloatField(default=0, verbose_name="市场价格")
     shop_price = models.FloatField(default=0, verbose_name="本店价格")
     goods_brief = models.TextField(max_length=500, verbose_name="商品简短描述")
-    goods_desc = UEditorField(imagePath="goods/images/", width=1000, height=300, filePath="goods/files/", default='',
-                              verbose_name='内容')
+    goods_desc = UEditorField('内容', width=1000, height=300, toolbars="full", imagePath="goods/images/",
+                              filePath="goods/files/", upload_settings={"imageMaxSize": 1204000},
+                              settings={}, command=None, )
     ship_free = models.BooleanField(default=True, verbose_name="是否承担运费")
     goods_front_image = models.ImageField(upload_to="goods/images/", null=True, blank=True, verbose_name="封面图")
     is_new = models.BooleanField(default=False, verbose_name="是否新品")
@@ -73,7 +74,7 @@ class Goods(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
-        verbose_name = '商品'
+        verbose_name = '商品信息'
         verbose_name_plural = verbose_name
 
     def __str__(self):

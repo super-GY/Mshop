@@ -3,7 +3,7 @@
 import datetime
 from django.db import migrations, models
 import django.db.models.deletion
-import extra_apps.DjangoUeditor.models
+import DjangoUeditor.models
 
 
 class Migration(migrations.Migration):
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('market_price', models.FloatField(default=0, verbose_name='市场价格')),
                 ('shop_price', models.FloatField(default=0, verbose_name='本店价格')),
                 ('goods_brief', models.TextField(max_length=500, verbose_name='商品简短描述')),
-                ('goods_desc', extra_apps.DjangoUeditor.models.UEditorField(default='', verbose_name='内容')),
+                ('goods_desc', DjangoUeditor.models.UEditorField(default='', verbose_name='内容')),
                 ('ship_free', models.BooleanField(default=True, verbose_name='是否承担运费')),
                 ('goods_front_image', models.ImageField(blank=True, null=True, upload_to='goods/images/', verbose_name='封面图')),
                 ('is_new', models.BooleanField(default=False, verbose_name='是否新品')),
