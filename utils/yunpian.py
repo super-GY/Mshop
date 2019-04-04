@@ -14,7 +14,7 @@ class YunPian(object):
         parmas = {
             "apikey": self.api_key,
             "mobile": mobile,
-            "text": "【Mshop】您的验证码是{code}。如非本人操作，请忽略本短信".format(code=code)
+            "text": "【慕学生鲜】您的验证码是{code}。如非本人操作，请忽略本短信".format(code=code)
         }
 
         response = requests.post(self.single_send_url, data=parmas)

@@ -17,7 +17,7 @@ import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'operations.apps.OperationsConfig',
     'trade.apps.TradeConfig',
+    'extra_apps.DjangoUeditor',
+    'crispy_forms',
+    'xadmin',
     'django_filters',
     'corsheaders',  # 跨域
     'rest_framework.authtoken',  # 认证
