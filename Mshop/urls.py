@@ -56,6 +56,7 @@ route.register(r'address', AddressViewset, base_name="address")
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path(r'', include(route.urls)),
+    url(r'^ueditor/', include('DjangoUeditor.urls')),
 
     # drf自带的token认证模式
     url(r'^api-token-auth/', views.obtain_auth_token),
