@@ -15,6 +15,7 @@ class CategorySerializer3(serializers.ModelSerializer):
 
 class CategorySerializer2(serializers.ModelSerializer):
     sub_cat = CategorySerializer3(many=True)
+
     class Meta:
         model = GoodsCategory
         fields = "__all__"
@@ -25,6 +26,7 @@ class CategorySerializer(serializers.ModelSerializer):
     商品类别序列化类
     """
     sub_cat = CategorySerializer2(many=True)
+
     class Meta:
         model = GoodsCategory
         fields = "__all__"
@@ -34,9 +36,10 @@ class GoodsImageSerializer(serializers.ModelSerializer):
     """
     商品轮播图序列化类
     """
+
     class Meta:
         model = GoodsImage
-        fields = ("image", )
+        fields = ("image",)
 
 
 class GoodsSerializer(serializers.ModelSerializer):
@@ -45,6 +48,7 @@ class GoodsSerializer(serializers.ModelSerializer):
     """
     category = CategorySerializer()
     images = GoodsImageSerializer(many=True)
+
     class Meta:
         model = Goods
         fields = "__all__"
@@ -54,6 +58,7 @@ class HotWordsSerializer(serializers.ModelSerializer):
     """
     热搜词 序列化类
     """
+
     class Meta:
         model = HotSearchWords
         fields = "__all__"
@@ -63,6 +68,7 @@ class BannerSerializer(serializers.ModelSerializer):
     """
     轮播的商品 序列化类
     """
+
     class Meta:
         model = Banner
         fields = "__all__"
@@ -72,6 +78,7 @@ class BrandSerializer(serializers.ModelSerializer):
     """
     品牌名 序列化类
     """
+
     class Meta:
         model = GoodsCategoryBrand
         fields = "__all__"
@@ -95,7 +102,8 @@ class IndexCategorySerializer(serializers.ModelSerializer):
         return goods_json
 
     def get_goods(self, obj):
-        all_goods = Goods.objects.filter(Q(category_id=obj.id)|Q(category__parent_category_id=obj.id)|Q(category__parent_category__parent_category_id=obj.id))
+        all_goods = Goods.objects.filter(Q(category_id=obj.id) | Q(category__parent_category_id=obj.id) | Q(
+            category__parent_category__parent_category_id=obj.id))
         goods_serializer = GoodsSerializer(all_goods, many=True, context={'request': self.context['request']})
         return goods_serializer.data
 

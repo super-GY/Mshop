@@ -17,10 +17,12 @@ import xadmin
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
+from django.views.static import serve
 from rest_framework import routers
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 
+from Mshop.settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
 from operations.views import UserFavViewset, LeavingMessageViewset, AddressViewset
 from trade.views import ShoppingCartViewset, OrderViewset, AlipayView
@@ -65,5 +67,6 @@ urlpatterns = [
     url(r'^jwt-auth/', obtain_jwt_token),
 
     url(r'^alipay/return/', AlipayView.as_view(), name="alipay"),
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),  # 指定上传媒体位置
 
 ]

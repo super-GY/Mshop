@@ -77,3 +77,4 @@ xadmin.site.register(Banner, BannerAdmin)
 xadmin.site.register(GoodsCategoryBrand, GoodsCategoryBrandAdmin)
 xadmin.site.register(HotSearchWords, HotSearchWordsAdmin)
 xadmin.site.register(IndexAd, IndexAdAdmin)
+

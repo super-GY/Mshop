@@ -17,7 +17,7 @@ import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
-# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
@@ -65,7 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'Mshop.urls'
 
 TEMPLATES = [
@@ -95,9 +96,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "mshop",
         'USER': 'root',
-        'PASSWORD': "Guan123456.",
-        'HOST': "47.96.103.173",
-        'OPTIONS': { 'init_command': 'SET default_storage_engine=INNODB;' }
+        'PASSWORD': "123456",
+        'HOST': "127.0.0.1",
+        'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB;'}
     }
 }
 
@@ -148,13 +149,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# CORS
-CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:8001',
-    'localhost:8001',
-)
-CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -186,3 +180,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+os.makedirs(STATIC_ROOT, exist_ok=True)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+os.makedirs(MEDIA_ROOT, exist_ok=True)
