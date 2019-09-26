@@ -1,7 +1,7 @@
 # _*_ coding:utf-8 _*_
 __author__ = "super.gyk"
 
-from Mshop.settings import REGEX_EMAIL, REGEX_MOBILE
+from mxshop.settings import REGEX_EMAIL, REGEX_MOBILE
 from users.models import User, EmailCode, VerifyCode
 import re
 from datetime import datetime, timedelta

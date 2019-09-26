@@ -1,4 +1,4 @@
-"""Mshop URL Configuration
+"""mxshop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -22,7 +22,7 @@ from rest_framework import routers
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 
-from Mshop.settings import MEDIA_ROOT
+from mxshop.settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
 from operations.views import UserFavViewset, LeavingMessageViewset, AddressViewset
 from trade.views import ShoppingCartViewset, OrderViewset, AlipayView

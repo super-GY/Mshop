@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Mshop.settings import private_key_path, ali_pub_key_path
+from mxshop.settings import private_key_path, ali_pub_key_path
 from utils.alipay import AliPay
 import time
 from rest_framework import serializers

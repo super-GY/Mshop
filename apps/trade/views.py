@@ -95,7 +95,7 @@ class OrderViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.Crea
 
 from rest_framework.views import APIView
 from utils.alipay import AliPay
-from Mshop.settings import private_key_path, ali_pub_key_path
+from mxshop.settings import private_key_path, ali_pub_key_path
 from rest_framework.response import Response
 
 

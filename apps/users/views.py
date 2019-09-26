@@ -12,7 +12,7 @@ from rest_framework import permissions
 from rest_framework import authentication
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework_jwt.serializers import jwt_encode_handler, jwt_payload_handler
-from Mshop.settings import APIKEY, EMAIL_TITLE, EMAIL_FROM
+from mxshop.settings import APIKEY, EMAIL_TITLE, EMAIL_FROM
 from users.models import VerifyCode
 from users.serializers import SmsSerializer, UserRegSerializer, UserDetailSerializer, EmailServerSerializer
 from utils.yunpian import YunPian
@@ -66,7 +66,7 @@ class EmailViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         # 发送邮件
         title = EMAIL_TITLE
         email_from = EMAIL_FROM
-        message = "【Mshop】您正在激活账户，您的激活号为{code}。如非本人操作，请忽略本邮件".format(code=code)
+        message = "【mxshop】您正在激活账户，您的激活号为{code}。如非本人操作，请忽略本邮件".format(code=code)
         send_mail(title, message, email_from, [email])
         # return Response("请查看激活邮件激活账户")
 
