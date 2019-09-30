@@ -8,7 +8,7 @@ from utils.permissions import IsOwnerOrReadOnly
 from .serializers import UserFavSerializer, UserFavDetailSerializer, AddressSerializer, LeavingMessageSerializer
 
 
-class UserFavViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
+class UserFavViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
                      mixins.DestroyModelMixin, viewsets.GenericViewSet):
     """
     list:
@@ -34,7 +34,7 @@ class UserFavViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Retr
         return UserFavSerializer
 
 
-class LeavingMessageViewset(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin,
+class LeavingMessageViewSet(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin,
                             viewsets.GenericViewSet):
     """
     list:
@@ -53,7 +53,7 @@ class LeavingMessageViewset(mixins.ListModelMixin, mixins.DestroyModelMixin, mix
         return UserLeavingMessage.objects.filter(user=self.request.user)
 
 
-class AddressViewset(viewsets.ModelViewSet):
+class AddressViewSet(viewsets.ModelViewSet):
     """
     收货地址管理
     list:

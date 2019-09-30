@@ -10,7 +10,7 @@ from utils.permissions import IsOwnerOrReadOnly
 from .models import ShoppingCart, OrderInfo, OrderGoods
 
 
-class ShoppingCartViewset(viewsets.ModelViewSet):
+class ShoppingCartViewSet(viewsets.ModelViewSet):
     """
     购物车功能
     list:
@@ -56,7 +56,7 @@ class ShoppingCartViewset(viewsets.ModelViewSet):
         return ShoppingCart.objects.filter(user=self.request.user)
 
 
-class OrderViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin,
+class OrderViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin,
                    viewsets.GenericViewSet):
     """
     订单管理
@@ -68,7 +68,7 @@ class OrderViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.Crea
         新增订单
     """
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
-    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    # authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     serializer_class = OrderSerializer
 
     def get_queryset(self):
@@ -99,7 +99,7 @@ from mxshop.settings import private_key_path, ali_pub_key_path
 from rest_framework.response import Response
 
 
-class AlipayView(APIView):
+class AliPayView(APIView):
     def get(self, request):
         """
         处理支付宝的return_url返回
@@ -112,7 +112,7 @@ class AlipayView(APIView):
 
         sign = processed_dict.pop("sign", None)
 
-        alipay = AliPay(
+        ali_pay = AliPay(
             appid="",
             app_notify_url="http://127.0.0.1:8000/alipay/return/",
             app_private_key_path=private_key_path,
@@ -121,7 +121,7 @@ class AlipayView(APIView):
             return_url="http://127.0.0.1:8000/alipay/return/"
         )
 
-        verify_re = alipay.verify(processed_dict, sign)
+        verify_re = ali_pay.verify(processed_dict, sign)
 
         if verify_re is True:
             order_sn = processed_dict.get('out_trade_no', None)
@@ -154,7 +154,7 @@ class AlipayView(APIView):
 
         sign = processed_dict.pop("sign", None)
 
-        alipay = AliPay(
+        ali_pay = AliPay(
             appid="",
             app_notify_url="http://127.0.0.1:8000/alipay/return/",
             app_private_key_path=private_key_path,
@@ -163,7 +163,7 @@ class AlipayView(APIView):
             return_url="http://127.0.0.1:8000/alipay/return/"
         )
 
-        verify_re = alipay.verify(processed_dict, sign)
+        verify_re = ali_pay.verify(processed_dict, sign)
 
         if verify_re is True:
             order_sn = processed_dict.get('out_trade_no', None)

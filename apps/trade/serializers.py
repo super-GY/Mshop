@@ -52,7 +52,7 @@ class ShopCartSerializer(serializers.Serializer):
         return instance
 
 
-class OrderGoodsSerialzier(serializers.ModelSerializer):
+class OrderGoodsSerializer(serializers.ModelSerializer):
     goods = GoodsSerializer(many=False)
 
     class Meta:
@@ -61,7 +61,7 @@ class OrderGoodsSerialzier(serializers.ModelSerializer):
 
 
 class OrderDetailSerializer(serializers.ModelSerializer):
-    goods = OrderGoodsSerialzier(many=True)
+    goods = OrderGoodsSerializer(many=True)
     alipay_url = serializers.SerializerMethodField(read_only=True)
 
     def get_alipay_url(self, obj):

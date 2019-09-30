@@ -39,7 +39,7 @@ class GoodsListViewSet(CacheResponseMixin, mixins.ListModelMixin, mixins.Retriev
         return Response(serializer.data)
 
 
-class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
     list:
         商品分类列表数据
@@ -50,7 +50,7 @@ class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets
     serializer_class = CategorySerializer
 
 
-class HotSearchsViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class HotSearchViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     获取热搜词列表
     """
@@ -58,7 +58,7 @@ class HotSearchsViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = HotWordsSerializer
 
 
-class BannerViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class BannerViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     获取轮播图列表
     """
@@ -66,7 +66,7 @@ class BannerViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = BannerSerializer
 
 
-class IndexCategoryViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+class IndexCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     首页商品分类数据
     """

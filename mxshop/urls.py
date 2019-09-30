@@ -23,37 +23,37 @@ from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 
 from mxshop.settings import MEDIA_ROOT
-from goods.views import GoodsListViewSet, CategoryViewset, HotSearchsViewset, BannerViewset, IndexCategoryViewset
-from operations.views import UserFavViewset, LeavingMessageViewset, AddressViewset
-from trade.views import ShoppingCartViewset, OrderViewset, AlipayView
-from users.views import UserViewset, EmailViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet, HotSearchViewSet, BannerViewSet, IndexCategoryViewSet
+from operations.views import UserFavViewSet, LeavingMessageViewSet, AddressViewSet
+from trade.views import ShoppingCartViewSet, OrderViewSet, AliPayView
+from users.views import UserViewSet, EmailViewSet
 
 route = routers.DefaultRouter()
 
 # 用户 url
-route.register(r'user', UserViewset, base_name='users')
+route.register(r'user', UserViewSet, base_name='users')
 # 发送邮件 url
 route.register(r'email', EmailViewSet, base_name='email')
 # 商品 url
 route.register(r'goods', GoodsListViewSet, base_name="goods")
 # 商品类型 url
-route.register(r'categorys', CategoryViewset, base_name="categorys")
+route.register(r'categorys', CategoryViewSet, base_name="categorys")
 # 热词 url
-route.register(r'hotsearchs', HotSearchsViewset, base_name="hotsearchs")
+route.register(r'hotsearchs', HotSearchViewSet, base_name="hotsearchs")
 # 轮播图 url
-route.register(r'banners', BannerViewset, base_name="banners")
+route.register(r'banners', BannerViewSet, base_name="banners")
 # 首页商品系列数据 url
-route.register(r'indexgoods', IndexCategoryViewset, base_name="indexgoods")
+route.register(r'indexgoods', IndexCategoryViewSet, base_name="indexgoods")
 # 购物车url
-route.register(r'shopcarts', ShoppingCartViewset, base_name="shopcarts")
+route.register(r'shopcarts', ShoppingCartViewSet, base_name="shopcarts")
 # 订单相关url
-route.register(r'orders', OrderViewset, base_name="orders")
+route.register(r'orders', OrderViewSet, base_name="orders")
 # 收藏
-route.register(r'userfavs', UserFavViewset, base_name="userfavs")
+route.register(r'userfavs', UserFavViewSet, base_name="userfavs")
 # 留言
-route.register(r'messages', LeavingMessageViewset, base_name="messages")
+route.register(r'messages', LeavingMessageViewSet, base_name="messages")
 # 收货地址
-route.register(r'address', AddressViewset, base_name="address")
+route.register(r'address', AddressViewSet, base_name="address")
 
 urlpatterns = [
     path('admin/', xadmin.site.urls),
@@ -66,7 +66,7 @@ urlpatterns = [
     # jwt的认证接口
     url(r'^jwt-auth/', obtain_jwt_token),
 
-    url(r'^alipay/return/', AlipayView.as_view(), name="alipay"),
+    url(r'^alipay/return/', AliPayView.as_view(), name="alipay"),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),  # 指定上传媒体位置
 
 ]
