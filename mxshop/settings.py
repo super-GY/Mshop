@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': "mshop",
         'USER': 'root',
         'PASSWORD': "123456",
-        'HOST': "127.0.0.1",
+        'HOST': "localhost",
         'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB;'}
     }
 }
@@ -128,8 +128,8 @@ EMAIL_TITLE = "您正在注册Mshop会员"
 EMAIL_FROM = "guanguanjujiu2018@163.com"
 
 # 支付宝相关配置
-private_key_path = os.path.join(BASE_DIR, 'trade/keys/private_2048.txt')
-ali_pub_key_path = os.path.join(BASE_DIR, 'trade/keys/alipay_key_2048.txt')
+private_key_path = os.path.join(BASE_DIR, 'apps/trade/keys/private_2048.txt')
+ali_pub_key_path = os.path.join(BASE_DIR, 'apps/trade/keys/ali_pay_key_2048.txt')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -23,7 +23,7 @@ from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 
 from mxshop.settings import MEDIA_ROOT
-from goods.views import GoodsListViewSet, CategoryViewSet, HotSearchViewSet, BannerViewSet, IndexCategoryViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet, HotSearchViewSet, BannerViewSet, IndexGoodsCategoryViewSet
 from operations.views import UserFavViewSet, LeavingMessageViewSet, AddressViewSet
 from trade.views import ShoppingCartViewSet, OrderViewSet, AliPayView
 from users.views import UserViewSet, EmailViewSet
@@ -43,7 +43,7 @@ route.register(r'hotsearchs', HotSearchViewSet, base_name="hotsearchs")
 # 轮播图 url
 route.register(r'banners', BannerViewSet, base_name="banners")
 # 首页商品系列数据 url
-route.register(r'indexgoods', IndexCategoryViewSet, base_name="indexgoods")
+route.register(r'indexgoods', IndexGoodsCategoryViewSet, base_name="indexgoods")
 # 购物车url
 route.register(r'shopcarts', ShoppingCartViewSet, base_name="shopcarts")
 # 订单相关url

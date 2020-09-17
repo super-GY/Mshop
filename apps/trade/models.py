@@ -11,11 +11,11 @@ class ShoppingCart(models.Model):
     """
     购物车
     """
-    user = models.ForeignKey(User, verbose_name=u"用户", on_delete=models.CASCADE)
-    goods = models.ForeignKey(Goods, verbose_name=u"商品", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="用户", on_delete=models.CASCADE)
+    goods = models.ForeignKey(Goods, verbose_name="商品", on_delete=models.CASCADE)
     nums = models.IntegerField(default=0, verbose_name="购买数量")
 
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+    add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
         verbose_name = '购物车'
@@ -35,7 +35,7 @@ class OrderInfo(models.Model):
         ("TRADE_CLOSED", "超时关闭"),
         ("WAIT_BUYER_PAY", "交易创建"),
         ("TRADE_FINISHED", "交易结束"),
-        ("paying", "待支付"),
+        ("PAYING", "待支付"),
     )
 
     user = models.ForeignKey(User, verbose_name="用户", on_delete=models.CASCADE)
@@ -54,7 +54,7 @@ class OrderInfo(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
-        verbose_name = u"订单"
+        verbose_name = "订单"
         verbose_name_plural = verbose_name
 
     def __str__(self):

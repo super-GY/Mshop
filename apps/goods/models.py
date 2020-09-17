@@ -3,10 +3,7 @@ from django.db import models
 from DjangoUeditor.models import UEditorField
 
 
-class GoodsCategory(models.Model):
-    """
-    商品类别
-    """
+class Category(models.Model):
     CATEGORY_TYPE = (
         (1, "一级类目"),
         (2, "二级类目"),
@@ -14,7 +11,7 @@ class GoodsCategory(models.Model):
     )
 
     name = models.CharField(default="", max_length=30, verbose_name="类别名", help_text="类别名")
-    code = models.CharField(default="", max_length=30, verbose_name="类别code", help_text="类别code")
+    code = models.CharField(default="", max_length=30, verbose_name="类别码", help_text="类别码")
     desc = models.TextField(default="", verbose_name="类别描述", help_text="类别描述")
     category_type = models.IntegerField(choices=CATEGORY_TYPE, verbose_name="类目级别", help_text="类目级别")
     parent_category = models.ForeignKey("self", null=True, blank=True, verbose_name="父类目级别", help_text="父目录",
@@ -30,11 +27,8 @@ class GoodsCategory(models.Model):
         return self.name
 
 
-class GoodsCategoryBrand(models.Model):
-    """
-    品牌名
-    """
-    category = models.ForeignKey(GoodsCategory, related_name='brands', null=True, blank=True, verbose_name="商品类目",
+class GoodsBrand(models.Model):
+    category = models.ForeignKey(Category, related_name='brands', null=True, blank=True, verbose_name="商品类目",
                                  on_delete=models.CASCADE)
     name = models.CharField(default="", max_length=30, verbose_name="品牌名", help_text="品牌名")
     desc = models.TextField(default="", max_length=200, verbose_name="品牌描述", help_text="品牌描述")
@@ -44,23 +38,19 @@ class GoodsCategoryBrand(models.Model):
     class Meta:
         verbose_name = "商品品牌"
         verbose_name_plural = verbose_name
-        db_table = "goods_goodsbrand"
 
     def __str__(self):
         return self.name
 
 
 class Goods(models.Model):
-    """
-    商品
-    """
-    category = models.ForeignKey(GoodsCategory, verbose_name="商品类目", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, verbose_name="商品类目", on_delete=models.CASCADE)
     goods_sn = models.CharField(max_length=50, default="", verbose_name="商品唯一货号")
     name = models.CharField(max_length=100, verbose_name="商品名")
     click_num = models.IntegerField(default=0, verbose_name="点击数")
     sold_num = models.IntegerField(default=0, verbose_name="商品销售量")
     fav_num = models.IntegerField(default=0, verbose_name="收藏数")
-    goods_num = models.IntegerField(default=0, verbose_name="库存数")
+    goods_num = models.IntegerField(default=0, verbose_name="库存")
     market_price = models.FloatField(default=0, verbose_name="市场价格")
     shop_price = models.FloatField(default=0, verbose_name="本店价格")
     goods_brief = models.TextField(max_length=500, verbose_name="商品简短描述")
@@ -82,11 +72,11 @@ class Goods(models.Model):
 
 
 class IndexAd(models.Model):
-    category = models.ForeignKey(GoodsCategory, related_name='category', verbose_name="商品类目", on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category', verbose_name="商品类目", on_delete=models.CASCADE)
     goods = models.ForeignKey(Goods, related_name='goods', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = '首页商品类别广告'
+        verbose_name = '首页商品'
         verbose_name_plural = verbose_name
 
     def __str__(self):

@@ -37,7 +37,13 @@ class UserFavViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Retr
 class LeavingMessageViewSet(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin,
                             viewsets.GenericViewSet):
     """
-    list:
+    list:r
+
+        return UserFavSerializer
+        :return LeavingMessageViewSet
+        还真是神奇啊
+
+
         获取用户留言
     create:
         添加留言

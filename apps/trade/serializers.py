@@ -65,16 +65,16 @@ class OrderDetailSerializer(serializers.ModelSerializer):
     alipay_url = serializers.SerializerMethodField(read_only=True)
 
     def get_alipay_url(self, obj):
-        alipay = AliPay(
-            appid="2016080600180695",
-            app_notify_url="http://47.92.87.172:8000/alipay/return/",
+        ali_pay = AliPay(
+            appid="2016101300674428",
+            app_notify_url="http://127.0.0.1:8000/alipay/return/",
             app_private_key_path=private_key_path,
             alipay_public_key_path=ali_pub_key_path,  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
             debug=True,  # 默认False,
-            return_url="http://47.92.87.172:8000/alipay/return/"
+            return_url="http://127.0.0.1:8000/alipay/return/"
         )
 
-        url = alipay.direct_pay(
+        url = ali_pay.direct_pay(
             subject=obj.order_sn,
             out_trade_no=obj.order_sn,
             total_amount=obj.order_mount,
@@ -101,12 +101,12 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def get_alipay_url(self, obj):
         alipay = AliPay(
-            appid="2016080600180695",
-            app_notify_url="http://47.92.87.172:8000/alipay/return/",
+            appid="2016101300674428",
+            app_notify_url="http://127.0.0.1:8000/alipay/return/",
             app_private_key_path=private_key_path,
             alipay_public_key_path=ali_pub_key_path,  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
             debug=True,  # 默认False,
-            return_url="http://47.92.87.172:8000/alipay/return/"
+            return_url="http://127.0.0.1:8000/alipay/return/"
         )
 
         url = alipay.direct_pay(

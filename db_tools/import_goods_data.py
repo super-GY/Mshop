@@ -11,7 +11,7 @@ import django
 
 django.setup()
 
-from goods.models import Goods, GoodsCategory, GoodsImage
+from goods.models import Goods, Category, GoodsImage
 
 from db_tools.data.product_data import row_data
 
@@ -25,7 +25,7 @@ for goods_detail in row_data:
     goods.goods_front_image = goods_detail["images"][0] if goods_detail["images"] else ""
 
     category_name = goods_detail["categorys"][-1]
-    category = GoodsCategory.objects.filter(name=category_name)
+    category = Category.objects.filter(name=category_name)
     if category:
         goods.category = category[0]
     goods.save()

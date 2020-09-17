@@ -5,9 +5,9 @@ from rest_framework.response import Response
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from goods.filters import GoodsFilter
-from goods.models import Goods, GoodsCategory, HotSearchWords, Banner
+from goods.models import Goods, Category, HotSearchWords, Banner
 from goods.serializers import GoodsSerializer, CategorySerializer, HotWordsSerializer, BannerSerializer, \
-    IndexCategorySerializer
+    IndexGoodsCategorySerializer
 
 
 class GoodsPagination(PageNumberPagination):
@@ -46,7 +46,7 @@ class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets
     retrieve:
         获取商品分类详情
     """
-    queryset = GoodsCategory.objects.filter(category_type=1)
+    queryset = Category.objects.filter(category_type=1)
     serializer_class = CategorySerializer
 
 
@@ -66,10 +66,12 @@ class BannerViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = BannerSerializer
 
 
-class IndexCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class IndexGoodsCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     首页商品分类数据
     """
-    queryset = GoodsCategory.objects.filter(is_tab=True, name__in=["生鲜食品", "酒水饮料"])
-    serializer_class = IndexCategorySerializer
+    # queryset = Category.objects.filter(is_tab=True, name__in=["生鲜食品", "酒水饮料"])
+    serializer_class = IndexGoodsCategorySerializer
+    queryset = Category.objects.filter(is_tab=True)
+
 

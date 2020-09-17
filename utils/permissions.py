@@ -1,9 +1,6 @@
 # _*_ coding:utf-8 _*_
 __author__ = "super.gyk"
 from rest_framework import permissions
-import oauth2
-import oauth
-import rest_framework.authtoken
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):

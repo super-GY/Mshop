@@ -42,7 +42,7 @@ class EmailCode(models.Model):
     邮箱验证码
     """
     code = models.CharField(max_length=10, verbose_name="验证码")
-    email = models.EmailField(verbose_name=u'邮箱')
+    email = models.EmailField(verbose_name='邮箱')
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:

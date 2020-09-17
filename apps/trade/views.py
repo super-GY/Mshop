@@ -21,7 +21,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
         删除购物记录
     """
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
-    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
+    # authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     serializer_class = ShopCartSerializer
     lookup_field = "goods_id"
 
